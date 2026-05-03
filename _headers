@@ -16,3 +16,9 @@
 
 /landmark-tattoo/bg/*
   Cache-Control: public, max-age=31536000, immutable
+
+/top-mark-tattoo/bg/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/think-tank-tattoo/bg/*
+  Cache-Control: public, max-age=31536000, immutable
