@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Landmark Tattoo — Custom Black &amp; Grey, Color, Cover-Ups — RiNo, Denver</title>
+<meta name="description" content="Landmark Tattoo. Independent, custom-only studio in Denver's RiNo. Black & grey, color, fine-line, cover-ups." />
+<meta name="theme-color" content="#0e0d18" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;text x='32' y='46' text-anchor='middle' font-family='Fraunces,serif' font-size='48' font-style='italic' fill='%23d6b796'&gt;L&lt;/text&gt;&lt;/svg&gt;" />
+<style>
+  :root {
+    --bg-deep: #0e0d18;
+    --bg: #15131f;
+    --bg-rise: #1a1828;
+    --bg-card: #1f1c2c;
+    --bg-mid: #25212f;
+    --warm: #c9b8a8;
+    --soft: #ece4d8;
+    --umber: #7a5c4e;
+    --umber-deep: #4a3328;
+    --line: rgba(214, 183, 150, 0.13);
+    --ink: #ece4d8;
+    --ink-mid: rgba(236, 228, 216, 0.62);
+    --ink-low: rgba(236, 228, 216, 0.38);
+    --gold: #d6b796;
+    --gold-bright: #ecd4a8;
+    --rust: #b07a52;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg-deep); }
+  body {
+    background: transparent;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+  nav, section, footer, .divider { position: relative; z-index: 2; }
+
+  /* ============ KLING SCROLL-SCRUB BACKGROUND ============
+     Single full-viewport canvas. 73 WebP frames preloaded from bg/.
+     Top of scroll = first frame (ink drop), bottom = last frame (botanical bloom).
+     Reduced-motion fallback uses first frame as static poster.
+  */
+  .bg-canvas {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    object-fit: cover;
+    background: var(--bg-deep);
+  }
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.78 0 0 0 0 0.58 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    pointer-events: none; z-index: 9000;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    font-variation-settings: "opsz" 144;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--gold); color: var(--bg-deep); }
+
+  /* ============== NAV ============== */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(14,13,24,0.85), rgba(14,13,24,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .brand-mark {
+    display: flex; align-items: center; gap: 0.85rem;
+  }
+  .brand-mark svg { width: 44px; height: 44px; flex: none; }
+  .brand-mark .wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.45rem;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: var(--soft);
+  }
+  .brand-mark .wordmark em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .brand-mark .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-top: 5px;
+  }
+  nav ul { display: flex; gap: 2.4rem; list-style: none; font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  nav ul a { opacity: 0.72; transition: opacity 0.3s, color 0.3s; }
+  nav ul a:hover { opacity: 1; color: var(--gold); }
+  nav .book {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--gold);
+    transition: color 0.3s, gap 0.3s;
+  }
+  nav .book:hover { color: var(--gold-bright); gap: 0.85rem; }
+
+  /* ============== HERO ============== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: rgba(14, 13, 24, 0.3);
+  }
+  .hero-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(80% 60% at 22% 28%, rgba(122, 92, 78, 0.28), transparent 60%),
+      radial-gradient(50% 50% at 80% 70%, rgba(214, 183, 150, 0.10), transparent 70%),
+      linear-gradient(to top, rgba(14,13,24,0.92) 0%, rgba(14,13,24,0.18) 55%, rgba(14,13,24,0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-shell {
+    position: relative;
+    z-index: 2;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 6rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.85rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+  }
+  .hero-eyebrow::before { content: ""; width: 36px; height: 1px; background: var(--gold); }
+  .hero h1 {
+    font-size: clamp(3rem, 9.2vw, 8.4rem);
+    line-height: 0.92;
+    letter-spacing: -0.034em;
+    color: var(--soft);
+    max-width: 14ch;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+  .hero h1 .line {
+    display: block;
+    overflow: hidden;
+    padding: 0.06em 0;
+  }
+  .hero h1 .line span {
+    display: inline-block;
+    transform: translateY(110%);
+    will-change: transform;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+    max-width: 720px;
+    opacity: 0;
+  }
+  .hero-meta div { font-size: 0.82rem; color: var(--ink-mid); letter-spacing: 0.04em; }
+  .hero-meta strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    color: var(--soft);
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-meta strong em { color: var(--gold); font-style: italic; font-weight: 300; }
+
+  .hero-side {
+    position: absolute;
+    right: 2.5rem; top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 1.25rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--ink-low);
+    writing-mode: vertical-rl;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .hero-side span {
+    border-left: 1px solid var(--line);
+    padding: 0 0 0 1rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 1.5rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-size: 0.66rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-low);
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  }
+  .hero-scroll::after {
+    content: "";
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: drip 2.6s ease-in-out infinite;
+  }
+  @keyframes drip {
+    0%, 100% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    50.01% { transform-origin: bottom; }
+  }
+
+  /* monogram in hero — large, watermarked, behind type */
+  .hero-monogram {
+    position: absolute;
+    top: 12%;
+    right: 6%;
+    width: clamp(280px, 32vw, 520px);
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px) rotate(-2deg);
+    transition: opacity 1.4s 0.6s cubic-bezier(.2,.8,.2,1), transform 1.6s 0.6s cubic-bezier(.2,.8,.2,1);
+    pointer-events: none;
+  }
+  .hero-monogram.lit { opacity: 1; transform: translateY(0) rotate(-2deg); }
+  .hero-monogram svg {
+    width: 100%; height: auto;
+    filter: drop-shadow(0 24px 50px rgba(0,0,0,0.6));
+  }
+
+  /* ============== SECTIONS ============== */
+  section { padding: 8rem 2.5rem; max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: inline-flex; align-items: center; gap: 0.85rem;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+  .heading {
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--soft);
+    max-width: 22ch;
+    margin-bottom: 2rem;
+  }
+  .heading em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 60ch;
+    margin-bottom: 4rem;
+    font-weight: 300;
+  }
+
+  /* INTRO + AWARDS */
+  .intro {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .intro-side h3 {
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 1.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+  .awards { display: grid; gap: 0; }
+  .award {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+    transition: padding 0.35s, background 0.35s;
+  }
+  .award:last-child { border-bottom: 1px solid var(--line); }
+  .award:hover { padding-left: 1rem; background: rgba(122,92,78,0.05); }
+  .award-year {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+  .award-title { color: var(--soft); margin-bottom: 0.3rem; font-size: 1.02rem; }
+  .award-desc { color: var(--ink-mid); font-size: 0.9rem; }
+
+  /* SERVICES */
+  .services {
+    background: linear-gradient(180deg, rgba(14,13,24,0.5) 0%, rgba(21,19,31,0.55) 100%);
+    margin: 0; max-width: none;
+    padding: 9rem 2.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .services-inner { max-width: 1320px; margin: 0 auto; }
+  .service-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+  }
+  .service-row {
+    display: grid;
+    grid-template-columns: 100px 1.2fr 2fr auto;
+    gap: 3rem;
+    align-items: center;
+    padding: 2.4rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.45s cubic-bezier(.2,.8,.2,1), background 0.45s;
+    cursor: pointer;
+    position: relative;
+  }
+  .service-row::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: linear-gradient(90deg, rgba(214,183,150,0.06), transparent);
+    transition: width 0.5s cubic-bezier(.2,.8,.2,1);
+  }
+  .service-row:hover {
+    padding-left: 2rem;
+  }
+  .service-row:hover::before { width: 100%; }
+  .service-row:hover .service-name { color: var(--gold); }
+  .service-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+  .service-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.85rem;
+    color: var(--soft);
+    transition: color 0.3s;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .service-desc { color: var(--ink-mid); font-size: 0.96rem; line-height: 1.55; }
+  .service-arrow {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    transition: transform 0.4s;
+  }
+  .service-row:hover .service-arrow { transform: translateX(10px); }
+
+  /* PORTFOLIO */
+  .portfolio-inner {
+    max-width: 1320px; margin: 0 auto;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.25rem;
+  }
+  .frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+  }
+  .frame-img {
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
+  }
+  .frame:hover .frame-img { transform: scale(1.07); }
+  .frame::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(14,13,24,0.85), transparent 60%);
+    opacity: 0; transition: opacity 0.45s;
+    z-index: 1;
+  }
+  .frame:hover::before { opacity: 1; }
+  .frame-cap {
+    position: absolute; bottom: 1.4rem; left: 1.6rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--soft);
+    z-index: 2;
+    opacity: 0; transform: translateY(10px);
+    transition: all 0.45s;
+  }
+  .frame:hover .frame-cap { opacity: 1; transform: translateY(0); }
+  .frame-1 { grid-column: span 7; aspect-ratio: 4/3; }
+  .frame-2 { grid-column: span 5; aspect-ratio: 4/5; }
+  .frame-3 { grid-column: span 4; aspect-ratio: 1/1; }
+  .frame-4 { grid-column: span 4; aspect-ratio: 1/1; }
+  .frame-5 { grid-column: span 4; aspect-ratio: 1/1; }
+  .frame-6 { grid-column: span 5; aspect-ratio: 4/5; }
+  .frame-7 { grid-column: span 7; aspect-ratio: 4/3; }
+  .frame .frame-img {
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='nn'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.72 0 0 0 0 0.58 0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23nn)'/></svg>");
+  }
+  .frame-1 .frame-img { background-color: #2a2438; background-blend-mode: overlay; background:
+      radial-gradient(circle at 30% 35%, rgba(214,183,150,0.28), transparent 55%),
+      linear-gradient(135deg, #2a2030, #15131f); }
+  .frame-2 .frame-img { background:
+      radial-gradient(circle at 65% 70%, rgba(176,122,82,0.35), transparent 55%),
+      linear-gradient(155deg, #5a3a2a, #1a1525); }
+  .frame-3 .frame-img { background: linear-gradient(135deg, #c9b8a8, #5a3a2a); }
+  .frame-4 .frame-img { background:
+      radial-gradient(circle at 50% 60%, rgba(214,183,150,0.22), transparent 60%),
+      linear-gradient(135deg, #20202d, #15131f); }
+  .frame-5 .frame-img { background: linear-gradient(135deg, #d6b796, #7a5c4e); }
+  .frame-6 .frame-img { background: linear-gradient(135deg, #1a1828, #2d2535); }
+  .frame-7 .frame-img { background:
+      radial-gradient(circle at 35% 45%, rgba(176,122,82,0.4), transparent 55%),
+      linear-gradient(135deg, #2d2535, #c9b8a8); }
+
+  /* PROCESS */
+  .process {
+    background: rgba(21, 19, 31, 0.55);
+    margin: 0; max-width: none;
+    padding: 9rem 2.5rem;
+  }
+  .process-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.7fr;
+    gap: 6rem;
+  }
+  .process-steps { display: grid; gap: 0; }
+  .pstep {
+    padding: 2.75rem 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 2rem;
+    transition: padding 0.4s, background 0.4s;
+  }
+  .pstep:last-child { border-bottom: 1px solid var(--line); }
+  .pstep:hover { padding-left: 1.25rem; }
+  .pstep-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .pstep h3 {
+    font-size: 1.7rem;
+    color: var(--soft);
+    margin-bottom: 0.7rem;
+    line-height: 1.2;
+  }
+  .pstep p { color: var(--ink-mid); max-width: 52ch; line-height: 1.65; }
+
+  /* PULL QUOTE */
+  .quote {
+    text-align: center;
+    padding: 9rem 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .quote blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    color: var(--soft);
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .quote blockquote::before { content: "\201C"; color: var(--gold); margin-right: 0.18em; font-size: 1.2em; vertical-align: -0.05em; }
+  .quote blockquote::after { content: "\201D"; color: var(--gold); margin-left: 0.1em; font-size: 1.2em; vertical-align: -0.3em; }
+  .quote cite {
+    font-style: normal;
+    font-size: 0.74rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  /* VISIT */
+  .visit {
+    background: rgba(21, 19, 31, 0.55);
+    margin: 0; max-width: none;
+    padding: 9rem 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .visit-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .info-list {
+    margin-top: 2.5rem;
+    display: grid; gap: 0;
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 2rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .info-row:last-child { border-bottom: 1px solid var(--line); }
+  .info-row dt {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .info-row dd { color: var(--soft); font-size: 1.05rem; }
+  .map {
+    aspect-ratio: 1/1;
+    background:
+      radial-gradient(circle at 30% 70%, rgba(214,183,150,0.16), transparent 55%),
+      radial-gradient(circle at 70% 30%, rgba(176,122,82,0.12), transparent 60%),
+      linear-gradient(135deg, var(--bg-card), var(--bg-deep));
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map::before {
+    content: "";
+    position: absolute;
+    inset: 32%;
+    border: 1px dashed rgba(214,183,150,0.4);
+    border-radius: 50%;
+    animation: ping 3.4s ease-out infinite;
+  }
+  .map::after {
+    content: "✦";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--gold);
+    font-size: 2.4rem;
+  }
+  @keyframes ping {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 11rem 2.5rem;
+    background:
+      radial-gradient(ellipse at center, rgba(122,92,78,0.20), transparent 60%),
+      rgba(14, 13, 24, 0.5);
+    margin: 0; max-width: none;
+    border-top: 1px solid var(--line);
+  }
+  .cta h2 {
+    font-size: clamp(2.6rem, 6vw, 5.2rem);
+    line-height: 1;
+    letter-spacing: -0.024em;
+    color: var(--soft);
+    margin-bottom: 1.5rem;
+    max-width: 18ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .cta h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .cta p { color: var(--ink-mid); max-width: 46ch; margin: 0 auto 2.75rem; font-size: 1.08rem; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1.15rem 2.4rem;
+    background: var(--gold);
+    color: var(--bg-deep);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(.2,.8,.2,1);
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(214,183,150,0.5); }
+  .btn-primary .arrow { transition: transform 0.35s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  /* FOOTER */
+  footer {
+    background: #07060e;
+    padding: 5rem 2.5rem 2rem;
+    color: var(--ink-mid);
+    font-size: 0.92rem;
+    border-top: 1px solid var(--line);
+  }
+  .foot-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .foot-brand {
+    display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;
+  }
+  .foot-brand svg { width: 40px; height: 40px; flex: none; }
+  .foot-brand .name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    color: var(--soft);
+  }
+  .foot-brand .name em { font-style: italic; color: var(--gold); font-weight: 300; }
+  footer h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.1rem;
+  }
+  footer ul { list-style: none; display: grid; gap: 0.6rem; }
+  footer ul a:hover { color: var(--gold); }
+  .foot-bottom {
+    max-width: 1320px; margin: 2rem auto 0;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 980px) {
+    nav { padding: 1rem 1.25rem; }
+    nav ul { display: none; }
+    .hero-shell { padding: 0 1.25rem; padding-bottom: 5rem; }
+    .hero-monogram { width: 220px; opacity: 0.35 !important; right: -3%; top: 18%; }
+    .hero-side { display: none; }
+    .intro, .process-inner, .visit-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .service-row { grid-template-columns: 50px 1fr auto; gap: 1.5rem; }
+    .service-row .service-desc { display: none; }
+    .portfolio-grid { grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+    .frame-1, .frame-7 { grid-column: span 6; }
+    .frame-2, .frame-6 { grid-column: span 6; aspect-ratio: 4/3; }
+    .frame-3, .frame-4, .frame-5 { grid-column: span 2; }
+    .foot-inner { grid-template-columns: 1fr 1fr; }
+    section { padding: 5.5rem 1.25rem; }
+    .services, .process, .visit, .cta { padding: 5.5rem 1.25rem; }
+  }
+
+  /* ============== SCROLL STORY ============== */
+  /* Ink-pour rail (left edge) — gold pours down as user descends */
+  .scroll-rail {
+    position: fixed; left: 1.4rem; top: 0; bottom: 0;
+    width: 2px; z-index: 90;
+    pointer-events: none;
+  }
+  .scroll-rail::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent, var(--line) 8%, var(--line) 92%, transparent);
+  }
+  .scroll-rail-fill {
+    position: absolute; left: 0; right: 0; top: 0; height: 0;
+    background: linear-gradient(to bottom,
+      var(--gold-bright) 0%,
+      var(--gold) 35%,
+      var(--rust) 70%,
+      var(--umber-deep) 100%);
+    box-shadow: 0 0 14px rgba(214, 183, 150, 0.55);
+    transition: height 0.06s linear;
+  }
+  .scroll-rail-bead {
+    position: absolute; left: 50%; top: 0;
+    width: 12px; height: 12px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 22px var(--gold-bright), 0 0 4px var(--soft);
+    transform: translate(-50%, -50%);
+    transition: top 0.06s linear, background 0.4s, box-shadow 0.4s;
+  }
+  .scroll-rail-section {
+    position: absolute; left: 50%;
+    width: 8px; height: 1px;
+    background: var(--gold);
+    transform: translateX(-50%);
+    opacity: 0.55;
+  }
+  .scroll-rail-label {
+    position: absolute; left: 14px; top: -0.55em;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--ink-low);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s, color 0.4s;
+  }
+  .scroll-rail-section.active .scroll-rail-label { opacity: 1; color: var(--gold); }
+
+  /* Hero parallax + fade */
+  .hero { will-change: transform; }
+  .hero-canvas, .hero-monogram { will-change: transform, opacity; }
+
+  /* Word-by-word reveal */
+  .reveal-words .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40%);
+    transition: opacity 0.75s cubic-bezier(.2,.8,.2,1), transform 0.75s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal-words.lit .word { opacity: 1; transform: translateY(0); }
+
+  /* Scroll-drawn ink dividers */
+  .divider {
+    position: relative;
+    height: 100px;
+    max-width: 1320px; margin: 0 auto;
+    pointer-events: none;
+  }
+  .divider svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .divider path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1;
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1);
+    opacity: 0.55;
+  }
+  .divider.lit path { stroke-dashoffset: 0; }
+  .divider .knot {
+    r: 3.5; fill: var(--gold);
+    opacity: 0;
+    transition: opacity 1s 0.8s ease;
+  }
+  .divider.lit .knot { opacity: 1; }
+
+  /* Frame parallax + scroll-velocity tilt */
+  .frame { will-change: transform; transition: transform 0.55s cubic-bezier(.2,.8,.2,1); }
+
+  /* CTA zoom */
+  .cta h2 {
+    will-change: transform, letter-spacing;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1), letter-spacing 0.7s ease;
+  }
+
+  /* Quote pin spotlight */
+  .quote { position: relative; }
+  .quote::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(214,183,150,0.10), transparent 60%);
+    opacity: 0;
+    transition: opacity 1.2s;
+    pointer-events: none;
+  }
+  .quote.lit::before { opacity: 1; }
+
+  /* Service-row scroll cascade */
+  .service-row.lit .service-name { animation: nameFloat 0.7s ease both; }
+  @keyframes nameFloat { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+    .hero h1 .line span { transform: translateY(0) !important; }
+    .hero-eyebrow, .hero-meta { opacity: 1 !important; }
+    .hero-monogram { opacity: 0.4 !important; transform: rotate(-2deg) !important; }
+    .hero-canvas { display: none; }
+    .hero {
+      background:
+        radial-gradient(80% 60% at 22% 28%, rgba(122, 92, 78, 0.32), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-deep));
+    }
+    .scroll-rail, .divider { display: none; }
+    .reveal-words .word { opacity: 1 !important; transform: none !important; }
+    .bg-canvas { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-canvas-poster {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: var(--bg-deep) url('bg/f_001.webp') center/cover no-repeat;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Kling 3.0 scroll-scrub background: 73 WebP frames, top=ink drop, bottom=botanical bloom -->
+<canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+<noscript><div class="bg-canvas-poster" aria-hidden="true"></div></noscript>
+
+<!-- Scroll progress rail (left edge) — gold ink-pour -->
+<div class="scroll-rail" aria-hidden="true">
+  <div class="scroll-rail-fill" id="railFill"></div>
+  <div class="scroll-rail-bead" id="railBead"></div>
+  <div class="scroll-rail-section" data-target="about" style="top: 18%"><span class="scroll-rail-label">Studio</span></div>
+  <div class="scroll-rail-section" data-target="services" style="top: 34%"><span class="scroll-rail-label">Services</span></div>
+  <div class="scroll-rail-section" data-target="work" style="top: 50%"><span class="scroll-rail-label">Work</span></div>
+  <div class="scroll-rail-section" data-target="process" style="top: 66%"><span class="scroll-rail-label">Process</span></div>
+  <div class="scroll-rail-section" data-target="visit" style="top: 82%"><span class="scroll-rail-label">Visit</span></div>
+  <div class="scroll-rail-section" data-target="book" style="top: 95%"><span class="scroll-rail-label">Book</span></div>
+</div>
+
+<nav>
+  <a href="#" class="brand-mark" aria-label="Landmark Tattoo home">
+    <!-- Monogram D w/ ligature swash -->
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="dlg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#ecd4a8"/>
+          <stop offset="1" stop-color="#a07852"/>
+        </linearGradient>
+      </defs>
+      <rect x="2" y="2" width="60" height="60" rx="2" fill="none" stroke="rgba(214,183,150,0.18)" stroke-width="1"/>
+      <path d="M 18 16 L 18 48 L 32 48 C 42 48 48 42 48 32 C 48 22 42 16 32 16 Z M 24 22 L 32 22 C 38 22 42 26 42 32 C 42 38 38 42 32 42 L 24 42 Z"
+            fill="url(#dlg)"/>
+      <!-- subtle ligature swash -->
+      <path d="M 14 50 Q 28 56 50 50" fill="none" stroke="#d6b796" stroke-width="0.8" opacity="0.7"/>
+      <circle cx="32" cy="11" r="1" fill="#d6b796"/>
+      <circle cx="50" cy="32" r="1" fill="#d6b796"/>
+    </svg>
+    <div>
+      <div class="wordmark"><em>Landmark</em> Tattoo</div>
+      <div class="tag">Denver · Custom Only</div>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#about">Studio</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <a href="#book" class="book">Book →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="ditherCanvas" aria-hidden="true"></canvas>
+  <div class="hero-monogram" aria-hidden="true">
+    <!-- Hero-scale D mark, watermarked behind type -->
+    <svg viewBox="0 0 480 600">
+      <defs>
+        <linearGradient id="hd1" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#ecd4a8" stop-opacity="0.95"/>
+          <stop offset="0.5" stop-color="#b07a52" stop-opacity="0.55"/>
+          <stop offset="1" stop-color="#4a3328" stop-opacity="0.18"/>
+        </linearGradient>
+        <linearGradient id="hd2" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#d6b796" stop-opacity="0.65"/>
+          <stop offset="1" stop-color="#7a5c4e" stop-opacity="0.25"/>
+        </linearGradient>
+        <filter id="bleed" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="1.2"/>
+        </filter>
+      </defs>
+      <!-- outer hairline frame -->
+      <rect x="6" y="6" width="468" height="588" rx="2" fill="none" stroke="rgba(214,183,150,0.18)" stroke-width="0.8"/>
+      <!-- The D, large + serifed -->
+      <g filter="url(#bleed)">
+        <path d="M 90 100 L 90 500 L 240 500 C 360 500 430 430 430 300 C 430 170 360 100 240 100 Z
+                 M 150 160 L 240 160 C 320 160 370 210 370 300 C 370 390 320 440 240 440 L 150 440 Z"
+              fill="url(#hd1)"/>
+      </g>
+      <!-- inscribed circles (echo of seal) -->
+      <circle cx="240" cy="300" r="190" fill="none" stroke="rgba(214,183,150,0.18)" stroke-width="0.8"/>
+      <circle cx="240" cy="300" r="216" fill="none" stroke="rgba(214,183,150,0.10)" stroke-width="0.8" stroke-dasharray="2 6"/>
+      <!-- stamp text -->
+      <text x="240" y="556" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#d6b796" opacity="0.85" letter-spacing="2">Landmark — Est. MMXVII</text>
+      <text x="240" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#d6b796" opacity="0.55" letter-spacing="6">CUSTOM TATTOO</text>
+      <!-- tiny stars -->
+      <text x="160" y="78" font-size="9" fill="#d6b796" opacity="0.6">✦</text>
+      <text x="320" y="78" font-size="9" fill="#d6b796" opacity="0.6">✦</text>
+      <text x="160" y="556" font-size="9" fill="#d6b796" opacity="0.6">✦</text>
+      <text x="320" y="556" font-size="9" fill="#d6b796" opacity="0.6">✦</text>
+    </svg>
+  </div>
+  <div class="hero-shell">
+    <div class="hero-eyebrow">RiNo · Denver · Est. 2017</div>
+    <h1 id="heroH1">
+      <span class="line"><span>Custom</span></span>
+      <span class="line"><span>tattoos,</span></span>
+      <span class="line"><span><em>drawn slowly,</em></span></span>
+      <span class="line"><span>worn forever.</span></span>
+    </h1>
+    <div class="hero-meta">
+      <div><strong>Robin <em>Aldecoa</em></strong>Owner · Lead artist</div>
+      <div><strong>9K · 955</strong>Followers · posts</div>
+      <div><strong>Custom only</strong>No flash · No walk-ins</div>
+    </div>
+  </div>
+  <div class="hero-side" aria-hidden="true">
+    <span>Award-winning · Vagaro top-booked 2023</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 1320 100" preserveAspectRatio="none">
+    <path d="M 50 50 Q 330 15 660 50 T 1270 50"/>
+    <circle class="knot" cx="660" cy="50"/>
+  </svg>
+</div>
+
+<!-- INTRO + AWARDS -->
+<section class="intro" id="about">
+  <div>
+    <div class="eyebrow">A small studio</div>
+    <h2 class="heading">A quiet room in the RiNo, run by <em>Robin Aldecoa.</em></h2>
+    <p class="lede">Landmark Tattoo is a one-artist studio. Every piece is drawn from scratch for the person who books it — no flash sheets, no off-the-shelf designs, no walk-ins. Sessions are slow on purpose. The studio holds one client a day, and the door stays closed when the chair is full.</p>
+  </div>
+  <div class="intro-side">
+    <h3>Recognition</h3>
+    <div class="awards">
+      <div class="award">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">Denver Best — Independent Studios</div>
+          <div class="award-desc">Top Tattoo Places Colorado</div>
+        </div>
+      </div>
+      <div class="award">
+        <div class="award-year">2023</div>
+        <div>
+          <div class="award-title">Most Booked Custom Studio</div>
+          <div class="award-desc">Vagaro · Denver region</div>
+        </div>
+      </div>
+      <div class="award">
+        <div class="award-year">2022</div>
+        <div>
+          <div class="award-title">Featured artist</div>
+          <div class="award-desc">Inked Magazine, October issue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="eyebrow">Services</div>
+    <h2 class="heading">Five things this studio does <em>well.</em></h2>
+    <div class="service-list">
+      <a href="#book" class="service-row">
+        <div class="service-num">i.</div>
+        <div class="service-name">Custom Tattoo Design</div>
+        <div class="service-desc">A long conversation, then a one-of-one drawing built for your body and your idea.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#book" class="service-row">
+        <div class="service-num">ii.</div>
+        <div class="service-name">Black &amp; Grey</div>
+        <div class="service-desc">Soft-shaded portraits, religious iconography, botanicals — drawn with old-school grain.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#book" class="service-row">
+        <div class="service-num">iii.</div>
+        <div class="service-name">Color</div>
+        <div class="service-desc">Painterly color that reads at distance and ages slowly. Saturated, never noisy.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#book" class="service-row">
+        <div class="service-num">iv.</div>
+        <div class="service-name">Cover-Ups</div>
+        <div class="service-desc">A specialty. Send a photo of what you want gone; we'll draw something better around it.</div>
+        <div class="service-arrow">→</div>
+      </a>
+      <a href="#book" class="service-row">
+        <div class="service-num">v.</div>
+        <div class="service-name">Fine-Line</div>
+        <div class="service-desc">Single-needle script, botanical illustrations, and small-format pieces with serious detail.</div>
+        <div class="service-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 1320 100" preserveAspectRatio="none">
+    <path d="M 50 50 C 260 95, 460 5, 660 50 S 1060 95, 1270 50"/>
+    <circle class="knot" cx="460" cy="40"/>
+    <circle class="knot" cx="860" cy="60"/>
+  </svg>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="work">
+  <div class="portfolio-inner">
+    <div class="eyebrow">Recent work</div>
+    <h2 class="heading">A small archive of things that left the studio in <em>the last year.</em></h2>
+    <div class="portfolio-grid">
+      <div class="frame frame-1"><div class="frame-img"></div><div class="frame-cap">Black &amp; grey, forearm</div></div>
+      <div class="frame frame-2"><div class="frame-img"></div><div class="frame-cap">Cover-up, 2 sessions</div></div>
+      <div class="frame frame-3"><div class="frame-img"></div><div class="frame-cap">Fine-line botanical</div></div>
+      <div class="frame frame-4"><div class="frame-img"></div><div class="frame-cap">Color, ribcage</div></div>
+      <div class="frame frame-5"><div class="frame-img"></div><div class="frame-cap">Custom design</div></div>
+      <div class="frame frame-6"><div class="frame-img"></div><div class="frame-cap">Portrait, black &amp; grey</div></div>
+      <div class="frame frame-7"><div class="frame-img"></div><div class="frame-cap">Half-sleeve, 4 sessions</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 1320 100" preserveAspectRatio="none">
+    <path d="M 50 50 Q 660 95 1270 50"/>
+    <circle class="knot" cx="660" cy="78"/>
+  </svg>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div>
+      <div class="eyebrow">How a piece is built</div>
+      <h2 class="heading">Four <em>unhurried</em> steps.</h2>
+      <p style="color: var(--ink-mid); max-width: 36ch; line-height: 1.65;">No flash sheets. No walk-ins. One client a day, every day, by appointment only.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep">
+        <div class="pstep-num">i.</div>
+        <div>
+          <h3>Inquiry</h3>
+          <p>Send a few sentences and any reference images through the booking form. We'll talk through size, placement, style, and a rough budget before anything is drawn.</p>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">ii.</div>
+        <div>
+          <h3>Drawing</h3>
+          <p>A custom design is built for you alone. Drawings aren't shared in advance — you'll see them on the day of the appointment, when small adjustments still take minutes, not weeks.</p>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">iii.</div>
+        <div>
+          <h3>Session</h3>
+          <p>Plan for a long, slow day. The studio holds one client at a time. There's coffee, tea, a record player, and no rush. Most mid-size pieces finish in a single session.</p>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">iv.</div>
+        <div>
+          <h3>Aftercare</h3>
+          <p>Detailed written aftercare goes home with you. A free touch-up is included within six months on most work — ink takes time to settle, and we don't believe in last impressions made on healing skin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <svg viewBox="0 0 1320 100" preserveAspectRatio="none">
+    <path d="M 50 50 C 330 5, 660 95, 990 50 S 1190 80, 1270 50"/>
+    <circle class="knot" cx="330" cy="22"/>
+    <circle class="knot" cx="990" cy="50"/>
+  </svg>
+</div>
+
+<!-- QUOTE -->
+<section class="quote">
+  <blockquote>Robin books quietly, draws slowly, and somehow still keeps a year-long waitlist. Worth every week of it.</blockquote>
+  <cite>— Vagaro client review · Five stars</cite>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="visit-inner">
+    <div class="map" aria-hidden="true"></div>
+    <div>
+      <div class="eyebrow">Find the studio</div>
+      <h2 class="heading">RiNo, <em>Denver.</em></h2>
+      <p style="color: var(--ink-mid); max-width: 42ch; line-height: 1.65;">A quiet street in the RiNo Art District, between the breweries and the warehouse murals. Street parking is easy after 10am.</p>
+      <dl class="info-list">
+        <div class="info-row"><dt>Address</dt><dd>RiNo, Denver, CO</dd></div>
+        <div class="info-row"><dt>Hours</dt><dd>By appointment · Tue–Sat</dd></div>
+        <div class="info-row"><dt>Booking</dt><dd>Vagaro · 24-hour deposit hold</dd></div>
+        <div class="info-row"><dt>Phone</dt><dd>(720) 475-1937</dd></div>
+        <div class="info-row"><dt>Email</dt><dd>tattoodumond@gmail.com</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="book">
+  <h2>Bring an idea, <em>leave with a piece.</em></h2>
+  <p>The waitlist is real, and so is the welcome. Send a sentence about the tattoo you've been thinking about — Robin reads every inquiry herself.</p>
+  <a href="mailto:tattoodumond@gmail.com" class="btn-primary">Begin a booking <span class="arrow">→</span></a>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="2" width="60" height="60" rx="2" fill="none" stroke="rgba(214,183,150,0.18)" stroke-width="1"/>
+          <path d="M 18 16 L 18 48 L 32 48 C 42 48 48 42 48 32 C 48 22 42 16 32 16 Z M 24 22 L 32 22 C 38 22 42 26 42 32 C 42 38 38 42 32 42 L 24 42 Z" fill="#d6b796"/>
+        </svg>
+        <span class="name"><em>Landmark</em> Tattoo</span>
+      </div>
+      <p>Custom-only tattoo studio. Black &amp; grey, color, fine-line, and cover-ups. RiNo, Denver.</p>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Work</h4>
+      <ul>
+        <li><a href="#work">Recent</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="https://www.instagram.com/tattoodumond/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>(720) 475-1937</li>
+        <li>tattoodumond@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© Landmark Tattoo · Denver, CO</span>
+    <span>Preview homepage · DEA-1.3</span>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // Hero text reveal — vanilla, no GSAP dep, reduced-motion aware
+  // ============================================================
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function reveal() {
+    if (reduced) return;
+    const eyebrow = document.querySelector('.hero-eyebrow');
+    const lines = document.querySelectorAll('.hero h1 .line span');
+    const meta = document.querySelector('.hero-meta');
+    const monogram = document.querySelector('.hero-monogram');
+
+    eyebrow.animate([{opacity:0},{opacity:1}], {duration: 800, delay: 300, fill: 'forwards', easing: 'cubic-bezier(.2,.8,.2,1)'});
+    lines.forEach((el, i) => {
+      el.animate([{transform:'translateY(110%)'},{transform:'translateY(0)'}], {duration: 1100, delay: 450 + i*130, fill: 'forwards', easing: 'cubic-bezier(.2,.8,.2,1)'});
+    });
+    meta.animate([{opacity:0},{opacity:1}], {duration: 1100, delay: 1300, fill: 'forwards', easing: 'ease-out'});
+    monogram.classList.add('lit');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reveal);
+  else reveal();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.transition = 'opacity 0.95s cubic-bezier(.2,.8,.2,1), transform 0.95s cubic-bezier(.2,.8,.2,1)';
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.eyebrow, .heading, .lede, .award, .service-row, .frame, .pstep, .info-row, blockquote, cite').forEach((el, i) => {
+    if (reduced) return;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transitionDelay = `${(i % 6) * 70}ms`;
+    io.observe(el);
+  });
+
+  // ============================================================
+  // SIGNATURE HERO — Animated dither + ink-bleed plumes
+  // CPU canvas, low-res render upscaled for chunky pixel feel.
+  // No WebGL dep, runs everywhere. Pauses offscreen.
+  // ============================================================
+  (function () {
+    if (reduced) return;
+    const canvas = document.getElementById('ditherCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    let W = 0, H = 0;
+    let mx = 0.3, my = 0.4, tmx = 0.3, tmy = 0.4;
+    let running = true;
+    let t = 0;
+
+    // Bayer 8x8 matrix — softer dither than 4x4
+    const BAYER = [
+       0,32, 8,40, 2,34,10,42,
+      48,16,56,24,50,18,58,26,
+      12,44, 4,36,14,46, 6,38,
+      60,28,52,20,62,30,54,22,
+       3,35,11,43, 1,33, 9,41,
+      51,19,59,27,49,17,57,25,
+      15,47, 7,39,13,45, 5,37,
+      63,31,55,23,61,29,53,21
+    ];
+
+    // Palette: deep night → umber → gold edge (matches brand)
+    const PAL = [
+      [14, 13, 24],     // deepest
+      [22, 20, 32],
+      [34, 28, 40],
+      [56, 40, 42],
+      [98, 68, 56],
+      [148,104, 78],
+      [200,148,108],
+      [236,212,168],    // gold edge
+    ];
+
+    const SCALE = 5; // each "pixel" = 5 screen px (chunky aesthetic)
+    let lw = 0, lh = 0;
+    const off = document.createElement('canvas');
+    const octx = off.getContext('2d', { alpha: false });
+    let img;
+
+    function resize() {
+      const r = canvas.getBoundingClientRect();
+      canvas.width = Math.floor(r.width);
+      canvas.height = Math.floor(r.height);
+      W = canvas.width; H = canvas.height;
+      lw = Math.max(1, Math.floor(W / SCALE));
+      lh = Math.max(1, Math.floor(H / SCALE));
+      off.width = lw; off.height = lh;
+      img = octx.createImageData(lw, lh);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    window.addEventListener('mousemove', e => {
+      tmx = e.clientX / window.innerWidth;
+      tmy = e.clientY / window.innerHeight;
+    });
+
+    const pauseObs = new IntersectionObserver((entries) => {
+      entries.forEach(en => running = en.isIntersecting);
+    });
+    pauseObs.observe(canvas);
+
+    // a few drifting "ink plumes" (procedural) — give the dither field life
+    const plumes = Array.from({length: 4}, (_, i) => ({
+      x: Math.random(), y: 0.4 + Math.random() * 0.4,
+      vx: (Math.random() - 0.5) * 0.0006,
+      vy: (Math.random() - 0.5) * 0.0006,
+      r: 0.18 + Math.random() * 0.18,
+      phase: i * 1.7
+    }));
+
+    function loop() {
+      if (!running) { requestAnimationFrame(loop); return; }
+      t += 0.006;
+
+      // mouse easing
+      mx += (tmx - mx) * 0.06;
+      my += (tmy - my) * 0.06;
+
+      // update plumes (gentle drift)
+      for (const p of plumes) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0.05 || p.x > 0.95) p.vx *= -1;
+        if (p.y < 0.2 || p.y > 0.8) p.vy *= -1;
+      }
+
+      const data = img.data;
+      // mouse-driven center (parallax warp)
+      const cx = lw * (0.32 + (mx - 0.5) * 0.18);
+      const cy = lh * (0.42 + (my - 0.5) * 0.22);
+      const maxR = Math.hypot(lw, lh);
+
+      for (let y = 0; y < lh; y++) {
+        for (let x = 0; x < lw; x++) {
+          const u = x / lw, v = y / lh;
+
+          // 1) base radial vignette around cursor-influenced center
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy) / maxR;
+          let value = 1.05 - dist * 1.45;
+
+          // 2) low-freq wave (fluid feel)
+          value += Math.sin(x * 0.06 + t * 1.6) * 0.05;
+          value += Math.cos(y * 0.05 - t * 1.1) * 0.05;
+
+          // 3) ink plumes (each = soft radial blob, modulated by sin)
+          for (const p of plumes) {
+            const px = p.x, py = p.y;
+            const ddx = u - px, ddy = v - py;
+            const d = Math.sqrt(ddx * ddx + ddy * ddy);
+            const breath = (Math.sin(t * 1.3 + p.phase) + 1) * 0.5;
+            const r = p.r * (0.85 + breath * 0.3);
+            const fall = Math.max(0, 1 - d / r);
+            value += fall * fall * 0.35;
+          }
+
+          value = Math.max(0, Math.min(1, value));
+
+          // 4) ordered Bayer dither → quantize to palette
+          const b = BAYER[(y % 8) * 8 + (x % 8)] / 64;
+          const level = Math.floor((value + (b - 0.5) * 0.16) * (PAL.length - 1));
+          const c = PAL[Math.max(0, Math.min(PAL.length - 1, level))];
+          const i = (y * lw + x) * 4;
+          data[i]     = c[0];
+          data[i + 1] = c[1];
+          data[i + 2] = c[2];
+          data[i + 3] = 255;
+        }
+      }
+      octx.putImageData(img, 0, 0);
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(off, 0, 0, W, H);
+
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+
+  // ============================================================
+  // SCROLL STORY — ink-pour rail, hero parallax warp, dividers,
+  // CTA zoom, scroll-velocity tilt
+  // ============================================================
+  (function () {
+    if (reduced) return;
+
+    // 1) Word-split for headings
+    document.querySelectorAll('.heading, .cta h2').forEach(el => {
+      const html = el.innerHTML;
+      const wrap = (s) => s.split(/(\s+)/).map(w => w.trim() ? `<span class="word">${w}</span>` : w).join('');
+      el.innerHTML = html.replace(/(<em[^>]*>)([^<]+)(<\/em>)/g, (m, o, t, c) => o + wrap(t) + c)
+                         .replace(/^([^<]+)/, (m, t) => wrap(t))
+                         .replace(/(<\/em>)([^<]+)$/, (m, c, t) => c + wrap(t));
+      el.classList.add('reveal-words');
+    });
+
+    // 2) IntersectionObserver — light dividers, quote, words, service-rows
+    const lightObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('lit');
+          if (e.target.classList.contains('reveal-words')) {
+            e.target.querySelectorAll('.word').forEach((w, i) => {
+              w.style.transitionDelay = `${i * 65}ms`;
+            });
+          }
+          lightObs.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -15% 0px' });
+    document.querySelectorAll('.divider, .quote, .reveal-words, .service-row').forEach(el => lightObs.observe(el));
+
+    // 3) Rail + bead position + active section
+    const railFill = document.getElementById('railFill');
+    const railBead = document.getElementById('railBead');
+    const railSections = document.querySelectorAll('.scroll-rail-section');
+    const sectionEls = Array.from(railSections).map(s => ({
+      rail: s, target: document.getElementById(s.dataset.target)
+    })).filter(o => o.target);
+
+    // 4) Hero parallax targets
+    const heroEl = document.querySelector('.hero');
+    const heroCanvas = document.querySelector('.hero-canvas');
+    const heroMonogram = document.querySelector('.hero-monogram');
+    const heroShell = document.querySelector('.hero-shell');
+
+    // 5) CTA zoom
+    const ctaH2 = document.querySelector('.cta h2');
+
+    // 6) Frame tilt by scroll velocity
+    const frames = document.querySelectorAll('.frame');
+
+    // 7) Kling 3.0 scroll-scrub background — 73 WebP frames preloaded, drawn to canvas
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas ? bgCanvas.getContext('2d') : null;
+    const FRAME_COUNT = 73;
+    const FRAME_PAD = 3;
+    const bgFrames = [];
+    let bgFramesReady = 0;
+    let bgCurrentFrame = -1;
+    function preloadBgFrames() {
+      for (let i = 1; i <= FRAME_COUNT; i++) {
+        const img = new Image();
+        img.decoding = 'async';
+        const num = String(i).padStart(FRAME_PAD, '0');
+        img.src = `bg/f_${num}.webp`;
+        img.onload = () => {
+          bgFramesReady++;
+          if (i === 1) drawBgFrame(0);
+        };
+        bgFrames.push(img);
+      }
+    }
+    function sizeBgCanvas() {
+      if (!bgCanvas) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      bgCanvas.width = Math.round(w * dpr);
+      bgCanvas.height = Math.round(h * dpr);
+      bgCanvas.style.width = w + 'px';
+      bgCanvas.style.height = h + 'px';
+      if (bgCtx) bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function drawBgFrame(idx) {
+      if (!bgCtx || !bgCanvas) return;
+      const img = bgFrames[idx];
+      if (!img || !img.complete || !img.naturalWidth) return;
+      bgCurrentFrame = idx;
+      const cw = bgCanvas.clientWidth || window.innerWidth;
+      const ch = bgCanvas.clientHeight || window.innerHeight;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+      const scale = Math.max(cw / iw, ch / ih);
+      const dw = iw * scale;
+      const dh = ih * scale;
+      const dx = (cw - dw) / 2;
+      const dy = (ch - dh) / 2;
+      bgCtx.clearRect(0, 0, cw, ch);
+      bgCtx.drawImage(img, dx, dy, dw, dh);
+    }
+    sizeBgCanvas();
+    preloadBgFrames();
+    window.addEventListener('resize', () => { sizeBgCanvas(); drawBgFrame(bgCurrentFrame >= 0 ? bgCurrentFrame : 0); });
+
+    let lastScrollY = window.scrollY, velSmoothed = 0;
+
+    function update() {
+      const sy = window.scrollY;
+      const vh = window.innerHeight;
+      const docH = document.documentElement.scrollHeight - vh;
+      const p = Math.max(0, Math.min(1, sy / docH));
+
+      const dv = sy - lastScrollY;
+      lastScrollY = sy;
+      velSmoothed += (dv - velSmoothed) * 0.18;
+
+      // rail
+      railFill.style.height = (p * 100) + '%';
+      railBead.style.top = (p * 100) + '%';
+      // bead color shifts: gold-bright → gold → rust → umber-deep
+      let beadColor;
+      if (p < 0.33) beadColor = 'var(--gold-bright)';
+      else if (p < 0.66) beadColor = 'var(--gold)';
+      else if (p < 0.85) beadColor = 'var(--rust)';
+      else beadColor = 'var(--umber-deep)';
+      railBead.style.background = beadColor;
+
+      sectionEls.forEach(({ rail, target }) => {
+        const r = target.getBoundingClientRect();
+        const inView = r.top < vh * 0.4 && r.bottom > vh * 0.4;
+        rail.classList.toggle('active', inView);
+      });
+
+      // hero parallax — canvas drifts down + dims, monogram floats away
+      if (heroEl) {
+        const heroProg = Math.min(1, sy / vh);
+        if (heroCanvas) {
+          heroCanvas.style.transform = `translateY(${sy * 0.4}px) scale(${1 + heroProg * 0.1})`;
+          heroCanvas.style.opacity = String(1 - heroProg * 0.6);
+        }
+        if (heroMonogram) {
+          heroMonogram.style.transform = `translateY(${sy * 0.55}px) rotate(${-2 + heroProg * 6}deg) scale(${1 - heroProg * 0.1})`;
+          heroMonogram.style.opacity = String(1 - heroProg * 0.65);
+        }
+        if (heroShell) heroShell.style.transform = `translateY(${sy * 0.15}px)`;
+      }
+
+      // CTA zoom
+      if (ctaH2) {
+        const r = ctaH2.parentElement.getBoundingClientRect();
+        const enter = Math.max(0, Math.min(1, 1 - (r.top - vh * 0.2) / (vh * 0.8)));
+        ctaH2.style.transform = `scale(${0.9 + enter * 0.16})`;
+        ctaH2.style.letterSpacing = `${-0.024 + enter * 0.014}em`;
+      }
+
+      // frames velocity tilt (small)
+      const tilt = Math.max(-2.5, Math.min(2.5, velSmoothed * 0.10));
+      frames.forEach((f, i) => {
+        const dir = i % 2 === 0 ? 1 : -1;
+        f.style.transform = `rotate(${tilt * dir * 0.5}deg)`;
+      });
+
+      // Kling scroll-scrub bg — map scroll progress to frame index
+      // top of scroll = frame 0 (ink drop), bottom = frame FRAME_COUNT-1 (botanical bloom)
+      if (bgCtx) {
+        const targetIdx = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(p * (FRAME_COUNT - 1))));
+        if (targetIdx !== bgCurrentFrame) {
+          drawBgFrame(targetIdx);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+
+    // smooth-scroll for nav anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const tgt = document.getElementById(id);
+        if (tgt) {
+          e.preventDefault();
+          tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

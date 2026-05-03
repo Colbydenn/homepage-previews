@@ -10,3 +10,9 @@
 
 /tattoo-dumond/bg/*
   Cache-Control: public, max-age=31536000, immutable
+
+/denver-city-tattoo-club/bg/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/landmark-tattoo/bg/*
+  Cache-Control: public, max-age=31536000, immutable
