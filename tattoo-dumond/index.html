@@ -120,6 +120,18 @@
     transition: color 0.3s, gap 0.3s;
   }
   nav .book:hover { color: var(--gold-bright); gap: 0.85rem; }
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.45rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .nav-toggle[aria-expanded="true"] { background: var(--gold); color: var(--bg-deep); }
 
   /* ============== HERO ============== */
   .hero {
@@ -678,7 +690,6 @@
 
   @media (max-width: 980px) {
     nav { padding: 1rem 1.25rem; }
-    nav ul { display: none; }
     .hero-shell { padding: 0 1.25rem; padding-bottom: 5rem; }
     .hero-monogram { width: 220px; opacity: 0.35 !important; right: -3%; top: 18%; }
     .hero-side { display: none; }
@@ -692,6 +703,25 @@
     .foot-inner { grid-template-columns: 1fr 1fr; }
     section { padding: 5.5rem 1.25rem; }
     .services, .process, .visit, .cta { padding: 5.5rem 1.25rem; }
+  }
+  @media (max-width: 768px) {
+    nav ul {
+      position: fixed; top: 64px; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: rgba(14,13,24,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1rem 1.4rem 1.4rem;
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-110%);
+      transition: transform 0.28s ease;
+      z-index: 99;
+    }
+    nav ul.open { transform: translateY(0); }
+    nav ul li { padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+    nav ul li:last-child { border-bottom: 0; }
+    nav .book { display: none; }
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   }
 
   /* ============== SCROLL STORY ============== */
@@ -834,7 +864,7 @@
 
 <!-- Kling 3.0 scroll-scrub background: 73 WebP frames, top=ink drop, bottom=botanical bloom -->
 <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
-<noscript><div class="bg-canvas-poster" aria-hidden="true"></div></noscript>
+<div class="bg-canvas-poster" aria-hidden="true"></div>
 
 <!-- Scroll progress rail (left edge) — gold ink-pour -->
 <div class="scroll-rail" aria-hidden="true">
@@ -871,7 +901,8 @@
       <div class="tag">Denver · Custom Only</div>
     </div>
   </a>
-  <ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">☰</button>
+  <ul id="navMenu">
     <li><a href="#about">Studio</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
@@ -879,6 +910,25 @@
   </ul>
   <a href="#book" class="book">Book →</a>
 </nav>
+<script>
+(function(){
+  const t = document.getElementById('navToggle');
+  const m = document.getElementById('navMenu');
+  if (!t || !m) return;
+  t.addEventListener('click', function() {
+    const open = m.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  m.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      m.classList.remove('open');
+      t.setAttribute('aria-expanded', 'false');
+      t.setAttribute('aria-label', 'Open menu');
+    }
+  });
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero">
